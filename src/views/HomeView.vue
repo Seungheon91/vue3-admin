@@ -1,9 +1,9 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+import LayoutAuthenticated from '@/layouts/LayoutAuthenticated.vue'
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <LayoutAuthenticated>
+    <div>하하하</div>
+  </LayoutAuthenticated>
 </template>
