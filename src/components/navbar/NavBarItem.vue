@@ -37,13 +37,14 @@ const componentClass = computed(() => {
   const base = [
     isDropdownActive.value
       ? `${styleStore.navBarItemLabelActiveColorStyle} dark:text-slate-400`
-      : `${styleStore.navBarItemLabelStyle} dark:text-whitedark:hover:text-slate-400 ${styleStore.navBarItemLabelHoverStyle}`,
+      : `${styleStore.navBarItemLabelStyle} dark:text-white dark:hover:text-slate-400 ${styleStore.navBarItemLabelHoverStyle}`,
     props.item.menu ? 'lg:py-2 lg:px-3' : 'py-2 px-3'
   ]
 
   if (props.item.isDesktopNoLabel) {
     base.push('lg:w-16', 'lg:justify-center')
   }
+
   return base
 })
 
