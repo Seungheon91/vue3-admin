@@ -3,9 +3,10 @@ import { computed, onBeforeMount, onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useStyleStore } from '@/stores/style.js'
 import { useMainStore } from '@/stores/main.js'
+import { mdiChevronUp, mdiChevronDown } from '@mdi/js'
 import BaseDivider from '@/components/BaseDivider.vue'
 import BaseIcon from '@/components/BaseIcon.vue'
-import NavbarMenuList from '@/layouts/NavbarMenuList.vue'
+import NavbarMenuList from '@/components/navbar/NavbarMenuList.vue'
 
 const props = defineProps({
   item: {
@@ -24,6 +25,7 @@ const is = computed(() => {
   if (props.item.to) {
     return RouterLink
   }
+
   return 'div'
 })
 
@@ -83,7 +85,7 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <BaseDivider v-if="item.isDivider" nav-bar />
+  <BaseDivider v-if="props.item.isDivider" nav-bar />
   <component
     :is="is"
     v-else
@@ -99,17 +101,34 @@ onBeforeMount(() => {
       class="flex items-center"
       :class="{
         'bg-gray-100 dark:bg-slate-800 lg:bg-transparent lg:dark:bg-transparent p-3 lg:p-0':
-          item.menu
+          props.item.menu
       }"
     >
-      <!-- <BaseIcon v-if="item.icon" :path="item.icon" class="transition-colors" /> -->
+      <BaseIcon
+        v-if="props.item.icon"
+        :path="props.item.icon"
+        class="transition-colors"
+        :size="24"
+      />
+      <span
+        class="px-2 transition-colors"
+        :class="{ 'lg:hidden': props.item.isDesktopNoLabel && props.item.icon }"
+      >
+        {{ itemLabel }}
+      </span>
+      <BaseIcon
+        v-if="props.item.menu"
+        :path="isDropdownActive ? mdiChevronUp : mdiChevronDown"
+        :size="24"
+        class="hidden lg:inline-flex transition-colors"
+      />
     </div>
     <div
-      v-if="item.menu"
+      v-if="props.item.menu"
       class="text-sm border-b border-gray-100 lg:border lg:bg-white lg:absolute lg:top-full lg:left-0 lg:min-w-full lg:z-20 lg:rounded-lg lg:shadow-lg lg:dark:bg-slate-800 dark:border-slate-700"
       :class="{ 'lg:hidden': !isDropdownActive }"
     >
-      <NavbarMenuList :menu="item.menu" @menu-click="menuClick" />
+      <NavbarMenuList :menu="props.item.menu" @menu-click="menuClickDropdown" />
     </div>
   </component>
 </template>

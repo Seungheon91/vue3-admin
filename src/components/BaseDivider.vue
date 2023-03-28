@@ -2,6 +2,7 @@
 const props = defineProps({
   navBar: Boolean
 })
+console.log(props.navBar)
 </script>
 
 <template>

@@ -4,7 +4,10 @@ const plugin = require("tailwindcss/plugin");
 
 module.exports = {
   // 템플릿 파일의 경로 설정
-  content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
+  content: [
+    "./index.html",
+    "./src/**/*.{vue,js,ts,jsx,tsx}",
+  ],
   // dark mode 설정 - https://tailwindcss.com/docs/dark-mode
   darkMode: "class",
   theme: {

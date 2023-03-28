@@ -1,21 +1,42 @@
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { mdiForwardburger, mdiBackburger, mdiMenu } from '@mdi/js'
 import { useStyleStore } from '@/stores/style.js'
+import { useMainStore } from '@/stores/main.js'
 import menuNavBar from '@/menuNavBar.js'
-import NavBar from '@/layouts/NavBar.vue'
+import menuAside from '@/menuAside.js'
+import NavBar from '@/components/navbar/NavBar.vue'
+import NavBarItemPlain from '@/components/navbar/NavBarItemPlain.vue'
+import BaseIcon from '@/components/BaseIcon.vue'
+import AsideMenu from '@/components/aside/AsideMenu.vue'
+
+useMainStore().setUser({
+  name: 'John Doe',
+  email: 'john@example.com',
+  avatar:
+    'https://avatars.dicebear.com/api/avataaars/example.svg?options[top][]=shortHair&options[accessoriesChance]=93'
+})
 
 const layoutAsidePadding = 'xl:pl-60'
+
 const styleStore = useStyleStore()
 
+const router = useRouter()
+
 const isAsideMobileExpanded = ref(false)
+const isAsideLgActive = ref(false)
+
+router.beforeEach(() => {
+  isAsideMobileExpanded.value = false
+  isAsideLgActive.value = false
+})
 
 const menuClick = (event, item) => {
   if (item.isToggleLightDark) {
     styleStore.setDarkMode()
   }
 }
-
-console.log(menuNavBar)
 </script>
 
 <template>
@@ -33,7 +54,33 @@ console.log(menuNavBar)
         :menu="menuNavBar"
         :class="[layoutAsidePadding, { 'ml-60 lg:ml-0': isAsideMobileExpanded }]"
         @menu-click="menuClick"
+      >
+        <NavBarItemPlain
+          display="flex lg:hidden"
+          @click.prevent="isAsideMobileExpanded = !isAsideMobileExpanded"
+        >
+          <BaseIcon :path="isAsideMobileExpanded ? mdiBackburger : mdiForwardburger" size="24" />
+        </NavBarItemPlain>
+        <NavBarItemPlain display="hidden lg:flex xl:hidden" @click.prevent="isAsideLgActive = true">
+          <BaseIcon :path="mdiMenu" size="24" />
+        </NavBarItemPlain>
+        <NavBarItemPlain use-margin>
+          <!--   <FormControl
+            placeholder="Search (ctrl+k)"
+            ctrl-k-focus
+            transparent
+            borderless
+          /> -->
+        </NavBarItemPlain>
+      </NavBar>
+      <AsideMenu
+        :is-aside-mobile-expanded="isAsideMobileExpanded"
+        :is-aside-lg-active="isAsideLgActive"
+        :menu="menuAside"
+        @menu-click="menuClick"
+        @aside-lg-close-click="isAsideLgActive = false"
       />
+      <slot />
     </div>
   </div>
 </template>
