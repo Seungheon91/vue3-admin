@@ -1,19 +1,16 @@
 import {
-  mdiMenu,
+/*   mdiMenu,
   mdiClockOutline,
   mdiCloud,
-  mdiCrop,
+  mdiCrop, */
   mdiAccount,
   mdiCogOutline,
-  mdiEmail,
   mdiLogout,
   mdiThemeLightDark,
-  mdiGithub,
-  mdiReact,
 } from "@mdi/js";
 
 export default [
-  {
+   /* {
     icon: mdiMenu,
     label: "Sample menu",
     menu: [
@@ -33,7 +30,7 @@ export default [
         label: "Item Last",
       },
     ],
-  },
+  },  */
   {
     isCurrentUser: true,
     menu: [
@@ -45,10 +42,6 @@ export default [
       {
         icon: mdiCogOutline,
         label: "Settings",
-      },
-      {
-        icon: mdiEmail,
-        label: "Messages",
       },
       {
         isDivider: true,
