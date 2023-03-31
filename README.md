@@ -1,6 +1,11 @@
 # vue3-admin
 vue3 + vite + pinia + tailwind Admin
 
+## vite tailwind setting
+https://tailwindcss.com/docs/guides/vite
+
+
+
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
