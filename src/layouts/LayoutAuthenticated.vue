@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { mdiForwardburger, mdiBackburger, mdiMenu } from '@mdi/js'
+import { mdiForwardburger, mdiBackburger, mdiMenu, mdiChevronLeft } from '@mdi/js'
 import { useStyleStore } from '@/stores/style.js'
 import { useMainStore } from '@/stores/main.js'
 import menuNavBar from '@/menuNavBar.js'
@@ -12,8 +12,8 @@ import BaseIcon from '@/components/BaseIcon.vue'
 import AsideMenu from '@/components/aside/AsideMenu.vue'
 
 useMainStore().setUser({
-  name: 'John Doe',
-  email: 'john@example.com',
+  name: 'seungheon',
+  email: 'seungheon1029@gmail.com',
   avatar:
     'https://avatars.dicebear.com/api/avataaars/example.svg?options[top][]=shortHair&options[accessoriesChance]=93'
 })
@@ -26,6 +26,7 @@ const router = useRouter()
 
 const isAsideMobileExpanded = ref(false)
 const isAsideLgActive = ref(false)
+const isAsideMenuExpanded = ref(false)
 
 router.beforeEach(() => {
   isAsideMobileExpanded.value = false
@@ -64,13 +65,12 @@ const menuClick = (event, item) => {
         <NavBarItemPlain display="hidden lg:flex xl:hidden" @click.prevent="isAsideLgActive = true">
           <BaseIcon :path="mdiMenu" size="24" />
         </NavBarItemPlain>
-        <NavBarItemPlain use-margin>
-          <!--   <FormControl
-            placeholder="Search (ctrl+k)"
-            ctrl-k-focus
-            transparent
-            borderless
-          /> -->
+        <NavBarItemPlain>
+          <BaseIcon
+            :path="mdiChevronLeft"
+            size="24"
+            @click.prevent="isAsideMenuExpanded = !isAsideMenuExpanded"
+          />
         </NavBarItemPlain>
       </NavBar>
       <AsideMenu

@@ -15,7 +15,27 @@ export default [
   {
     to: "/",
     icon: mdiMonitor,
-    label: "Dashboard",
+    label: "견적신청",
+    menu: [
+      {
+        label: "Item One",
+      },
+      {
+        label: "Item Two",
+      },
+    ],
+  },
+  {
+    label: "파트너 관리",
+    icon: mdiViewList,
+    menu: [
+      {
+        label: "Item One",
+      },
+      {
+        label: "Item Two",
+      },
+    ],
   },
 /*   {
     to: "/",
@@ -57,16 +77,5 @@ export default [
     label: "Error",
     icon: mdiAlertCircle,
   }, */
-  {
-    label: "Dropdown",
-    icon: mdiViewList,
-    menu: [
-      {
-        label: "Item One",
-      },
-      {
-        label: "Item Two",
-      },
-    ],
-  },
+  
 ];
