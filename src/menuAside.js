@@ -17,7 +17,7 @@ export default [
     icon: mdiMonitor,
     label: "Dashboard",
   },
-  {
+/*   {
     to: "/",
     label: "Tables",
     icon: mdiTable,
@@ -46,17 +46,17 @@ export default [
     to: "/",
     label: "Profile",
     icon: mdiAccountCircle,
-  },
+  }, */
   {
-    to: "/",
+    to: "/login",
     label: "Login",
     icon: mdiLock,
   },
-  {
+  /* {
     to: "/",
     label: "Error",
     icon: mdiAlertCircle,
-  },
+  }, */
   {
     label: "Dropdown",
     icon: mdiViewList,

@@ -52,7 +52,7 @@ const submit = (event) => {
     @submit="submit"
   >
     <slot v-if="hasComponentLayout" />
-    <template>
+    <template v-else>
       <CardBoxBody :no-padding="hasTable">
         <slot />
       </CardBoxBody>
