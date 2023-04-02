@@ -65,15 +65,16 @@ const menuClick = (event, item) => {
         <NavBarItemPlain display="hidden lg:flex xl:hidden" @click.prevent="isAsideLgActive = true">
           <BaseIcon :path="mdiMenu" size="24" />
         </NavBarItemPlain>
-        <NavBarItemPlain>
+        <NavBarItemPlain display="hidden lg:hidden xl:flex">
           <BaseIcon
-            :path="mdiChevronLeft"
+            :path="isAsideMenuExpanded ?mdiForwardburger : mdiBackburger "
             size="24"
             @click.prevent="isAsideMenuExpanded = !isAsideMenuExpanded"
           />
         </NavBarItemPlain>
       </NavBar>
       <AsideMenu
+        v-if="!isAsideMenuExpanded"
         :is-aside-mobile-expanded="isAsideMobileExpanded"
         :is-aside-lg-active="isAsideLgActive"
         :menu="menuAside"
